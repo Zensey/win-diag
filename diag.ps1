@@ -168,7 +168,7 @@ add-type -AssemblyName System.IO.Compression.FileSystem
 $zipDestinationFolder = (Get-Item $OutFolder).Parent.FullName
 $zipDestinationFile = Join-Path -Path $zipDestinationFolder -ChildPath ("dump.zip")
 
-if (Test-Path $zipDestinationFile -IsValid -ErrorAction SilentlyContinue) {
+if (Test-Path $zipDestinationFile) {
     Remove-Item $zipDestinationFile
 }
 
