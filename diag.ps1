@@ -150,17 +150,18 @@ $outFile = "dump.zip"
 New-Item -ItemType Directory -Force -Path $OutFolder | Out-Null
 
 Write-Host "Get-NetRoute"
-Get-NetRoute | Export-Csv -Path "$OutFolder/_route.csv" -NoTypeInformation
+Get-NetRoute | Export-Csv -Path "$OutFolder/route.csv" -NoTypeInformation
 Write-Host "Get-Process"
-Get-Process | Export-Csv -Path "$OutFolder/_process.csv" -NoTypeInformation
+Get-Process | Export-Csv -Path "$OutFolder/process.csv" -NoTypeInformation
+Get-WmiObject -Class win32_process | Export-Csv -Path "$OutFolder\processExtended.csv" -NoTypeInformation
 Write-Host "Get-Service"
-Get-Service | Export-Csv -Path "$OutFolder/_service.csv" -NoTypeInformation
+Get-Service | Export-Csv -Path "$OutFolder/service.csv" -NoTypeInformation
 Write-Host "Get-Service (ext.)"
-Get-WmiObject -Class win32_service | Export-Csv -Path "$OutFolder/_serviceExtended.csv" -NoTypeInformation
+Get-WmiObject -Class win32_service | Export-Csv -Path "$OutFolder/serviceExtended.csv" -NoTypeInformation
 Write-Host "Get-ComputerInfo"
-Get-ComputerInfo | Export-Csv -Path "$OutFolder/_computerinfo.csv" -NoTypeInformation
+Get-ComputerInfo | Export-Csv -Path "$OutFolder/computerinfo.csv" -NoTypeInformation
 Write-Host "FirewallRules"
-Export-FirewallRules -Inbound -CSVFile "$OutFolder/_firewallExport.csv"
+Export-FirewallRules -Inbound -CSVFile "$OutFolder/firewallExport.csv"
 
 
 # Create archive
