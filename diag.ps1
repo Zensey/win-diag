@@ -1,8 +1,6 @@
 
 # # Requires -RunAsAdministrator
 
-
-#at top of script
 if (!
     #current role
     (New-Object Security.Principal.WindowsPrincipal(
@@ -145,7 +143,7 @@ function Export-FirewallRules()
 }
 
 Set-Location (Split-Path $MyInvocation.MyCommand.Path)
-$OutFolder = "_dump"
+$OutFolder = (Get-Item "_dump").FullName
 $outFile = "dump.zip"
 New-Item -ItemType Directory -Force -Path $OutFolder | Out-Null
 
@@ -176,9 +174,8 @@ if (Test-Path $zipDestinationFile) {
 [System.IO.Compression.ZipFile]::CreateFromDirectory($OutFolder, $zipDestinationFile, 'Optimal', $false)
 Write-Host !
 Write-Host !
+Write-Host !
 Write-Host "Dump is located here: $zipDestinationFile" -ForegroundColor Green
-
 
 Write-Host -NoNewLine 'Press any key to continue...';
 $null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown');
-
